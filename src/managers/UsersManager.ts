@@ -25,9 +25,8 @@ export class UsersManager extends BaseManager {
 	 * @param  {string} login
 	 * @returns Promise
 	 */
-	async get(login: string): Promise<User | null> {
-		const res = await this.client.get("users/" + login);
-		if (res === null) return null;
-		return new User(this.client, res?.data);
+	async get(login: string): Promise<User> {
+		const res = await this.client.get<void, IUser>("users/" + login);
+		return new User(this.client, res.data);
 	}
 }
