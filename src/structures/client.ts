@@ -15,79 +15,65 @@ const limiter = new Bottleneck({
 	minTime: 500,
 });
 
-export class Client {
-	private _id: string;
-	private _secret: string;
-	private _token: null | string = null;
-	static uri: string = "https://api.intra.42.fr/v2/";
+interface TokenResponse
+{
+	access_token: string;
+}
 
-	users = new UsersManager(this);
-	campus = new CampusManager(this);
-	events = new EventsManager(this);
-	events_users = new EventsUsersManager(this);
-	cursus = new CursusManager(this);
-	projects = new ProjectManager(this);
-	scale_teams = new ScaleTeamsManager(this);
+export class Client {
+	private static readonly TOKEN_URI: string = "https://api.intra.42.fr/oauth/token";
+	private static readonly BASE_URL: string = "https://api.intra.42.fr/v2/";
+	//
+	private readonly _id: string;
+	private readonly _secret: string;
+	private _token: null | string = null;
+	//
+	public readonly users = new UsersManager(this);
+	public readonly campus = new CampusManager(this);
+	public readonly events = new EventsManager(this);
+	public readonly events_users = new EventsUsersManager(this);
+	public readonly cursus = new CursusManager(this);
+	public readonly projects = new ProjectManager(this);
+	public readonly scale_teams = new ScaleTeamsManager(this);
 
 	constructor(id: string, secret: string) {
 		this._id = id;
 		this._secret = secret;
 	}
 
-	private async _getToken(): Promise<string | null> {
-		const headers = {
-			Accept: "*/*",
-			"Content-Type": "application/x-www-form-urlencoded",
+	private async _getToken(): Promise<string> {
+		const reqOptions = {
+			headers: {
+				Accept: "*/*",
+				"Content-Type": "application/x-www-form-urlencoded",
+			}
 		};
-		const body = querystring.stringify({
+		const body: string = querystring.stringify({
 			grant_type: "client_credentials",
 			client_id: this._id,
 			client_secret: this._secret,
 		});
-		const reqOptions = {
-			url: "https://api.intra.42.fr/oauth/token",
-			method: "POST",
-			headers: headers,
-			data: body,
-		};
 
-		try {
-			const res = await axios.request(reqOptions);
-			console.log("New token!");
-			return <string>res.data.access_token;
-		} catch (err: any) {
-			console.error(
-				err.response.status,
-				err.response.statusText,
-				err.response.data
-			);
-		}
-		return null;
+		return (
+			await axios.post<TokenResponse>(Client.TOKEN_URI, body, reqOptions)
+		).data.access_token;
 	}
 
-	async get(path: string): Promise<AxiosResponse<any, any> | null> {
-		if (this._token === null) this._token = await this._getToken();
-		for (let stop = 2; stop !== 0; stop--) {
-			const config = {
-				headers: {
-					Authorization: "Bearer " + this._token,
-				},
-			};
-			try {
-				const res = await limiter.schedule(() =>
-					axios.get(Client.uri + path, config)
-				);
-				return res;
-			} catch (err: any) {
-				console.error(
-					err.response.status,
-					err.response.statusText,
-					err.response.data
-				);
-				this._token = await this._getToken();
-			}
+	async get<Req = any, Res = any>(path: string): Promise<AxiosResponse<Req, Res>> {
+		if (this._token === null) {
+			this._token = await this._getToken();
 		}
-		return null;
+		// for (let stop = 2; stop !== 0; stop--) {
+		const config = {
+			headers: {
+				Authorization: "Bearer " + this._token,
+			},
+		};
+		// TODO remove limiter.schedule
+		return await limiter.schedule(() =>
+			axios.get(Client.BASE_URL + path, config)
+		);
+		// }
 	}
 
 	async fetch(path: string, limit: number = 0): Promise<Object[]> {
