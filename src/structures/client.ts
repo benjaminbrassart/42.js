@@ -59,7 +59,7 @@ export class Client {
 		).data.access_token;
 	}
 
-	async get<Req = any, Res = any>(path: string): Promise<AxiosResponse<Req, Res>> {
+	async get<Req = any, Res = any>(path: string): Promise<AxiosResponse<Res, Req>> {
 		if (this._token === null) {
 			this._token = await this._getToken();
 		}
