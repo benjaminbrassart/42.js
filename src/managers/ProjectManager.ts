@@ -27,8 +27,9 @@ export class ProjectManager extends BaseManager {
 	 * @param  {number|string} target id | slug
 	 * @returns Promise
 	 */
-	async get(target: number | string): Promise<Project | null> {
-		const res = await this.client.get("projects/" + target);
-		return new Project(res?.data);
+	async get(target: number | string): Promise<Project> {
+		return new Project(
+			(await this.client.get<void, IProject>("projects/" + target)).data
+		);
 	}
 }
