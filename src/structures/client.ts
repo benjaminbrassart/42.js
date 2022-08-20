@@ -45,14 +45,14 @@ export class Client {
 		const reqOptions = {
 			headers: {
 				Accept: "*/*",
-				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Type": "application/json",
 			}
 		};
-		const body: string = querystring.stringify({
+		const body = {
 			grant_type: "client_credentials",
 			client_id: this._id,
 			client_secret: this._secret,
-		});
+		};
 
 		return (
 			await axios.post<TokenResponse>(Client.TOKEN_URI, body, reqOptions)
