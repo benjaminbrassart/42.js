@@ -1,4 +1,4 @@
-import { Client } from "../structures/client";
+import { Client } from "@/structures/client";
 
 export class BaseManager {
 	protected client: Client;

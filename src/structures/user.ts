@@ -1,7 +1,7 @@
-import { BaseManager } from "../managers/BaseManager";
-import { Client } from "./client";
-import { ICursusUsers } from "./cursus_users";
-import { IScaleTeam, ScaleTeam } from "./scale_teams";
+import { BaseManager } from "@/managers/BaseManager";
+import { Client } from "@/structures/client";
+import { ICursusUsers } from "@/structures/cursus_users";
+import { IScaleTeam, ScaleTeam } from "@/structures/scale_teams";
 
 export interface IUser {
 	id: number;

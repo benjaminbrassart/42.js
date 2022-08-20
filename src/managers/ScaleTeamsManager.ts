@@ -1,6 +1,6 @@
-import { BaseManager } from "./BaseManager";
-import { Client } from "../structures/client";
-import { ScaleTeam, IScaleTeam } from "../structures/scale_teams";
+import { BaseManager } from "@/managers/BaseManager";
+import { Client } from "@/structures/client";
+import { ScaleTeam, IScaleTeam } from "@/structures/scale_teams";
 
 export class ScaleTeamsManager extends BaseManager {
 	constructor(client: Client) {

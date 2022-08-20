@@ -1,14 +1,14 @@
 import querystring from "node:querystring";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import Bottleneck from "bottleneck";
-import { UsersManager } from "../managers/UsersManager";
-import { CampusManager } from "../managers/CampusManager";
-import { EventsManager } from "../managers/EventsManager";
-import { Loader } from "../utils/loader";
-import { EventsUsersManager } from "../managers/EventsUsersManager";
-import { CursusManager } from "../managers/CursusManager";
-import { ProjectManager } from "../managers/ProjectManager";
-import { ScaleTeamsManager } from "../managers/ScaleTeamsManager";
+import { UsersManager } from "@/managers/UsersManager";
+import { CampusManager } from "@/managers/CampusManager";
+import { EventsManager } from "@/managers/EventsManager";
+import { Loader } from "@/utils/loader";
+import { EventsUsersManager } from "@/managers/EventsUsersManager";
+import { CursusManager } from "@/managers/CursusManager";
+import { ProjectManager } from "@/managers/ProjectManager";
+import { ScaleTeamsManager } from "@/managers/ScaleTeamsManager";
 
 const limiter = new Bottleneck({
 	maxConcurrent: 2,

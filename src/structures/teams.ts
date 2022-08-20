@@ -1,4 +1,4 @@
-import { User } from "./user";
+import { User } from "@/structures/user";
 
 export interface ITeam {
     id: number,

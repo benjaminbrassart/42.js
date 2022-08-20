@@ -1,6 +1,6 @@
-import { BaseManager } from "./BaseManager";
-import { Client } from "../structures/client";
-import { ICampus, Campus } from "../structures/campus";
+import { BaseManager } from "@/managers/BaseManager";
+import { Client } from "@/structures/client";
+import { ICampus, Campus } from "@/structures/campus";
 
 export class CampusManager extends BaseManager {
 	constructor(client: Client) {

@@ -1,6 +1,6 @@
-import { BaseManager } from "./BaseManager";
-import { Client } from "../structures/client";
-import { User, IUser } from "../structures/user";
+import { BaseManager } from "@/managers/BaseManager";
+import { Client } from "@/structures/client";
+import { User, IUser } from "@/structures/user";
 
 export class UsersManager extends BaseManager {
 	constructor(client: Client) {

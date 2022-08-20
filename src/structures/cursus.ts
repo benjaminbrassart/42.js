@@ -1,5 +1,5 @@
-import { BaseManager } from "../managers/BaseManager";
-import { Client } from "./client";
+import { BaseManager } from "@/managers/BaseManager";
+import { Client } from "@/structures/client";
 
 export interface ICursus {
     id: number,

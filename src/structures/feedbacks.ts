@@ -1,5 +1,5 @@
-import { IFeedbackDetails } from "./feedback_details";
-import { IUser } from "./user";
+import { IFeedbackDetails } from "@/structures/feedback_details";
+import { IUser } from "@/structures/user";
 
 export interface IFeedback {
     id: number,

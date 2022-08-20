@@ -1,4 +1,4 @@
-import { ICursus } from "./cursus";
+import { ICursus } from "@/structures/cursus";
 
 export interface ICursusUsers {
     id: number,

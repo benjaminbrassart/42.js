@@ -1,5 +1,5 @@
-import { User } from "./user";
-import { Event } from "./events";
+import { User } from "@/structures/user";
+import { Event } from "@/structures/events";
 
 export interface IEventUser {
 	id: number;

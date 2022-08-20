@@ -1,5 +1,5 @@
-import { IProject } from "./project";
-import { ITeam } from "./teams";
+import { IProject } from "@/structures/project";
+import { ITeam } from "@/structures/teams";
 
 export interface IProjectsUsers {
     id: number,

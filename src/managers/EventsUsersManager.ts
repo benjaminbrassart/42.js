@@ -1,6 +1,6 @@
-import { BaseManager } from "./BaseManager";
-import { Client } from "../structures/client";
-import { EventsUsers } from "../structures/events_users";
+import { BaseManager } from "@/managers/BaseManager";
+import { Client } from "@/structures/client";
+import { EventsUsers } from "@/structures/events_users";
 
 export class EventsUsersManager extends BaseManager {
 	constructor(client: Client) {

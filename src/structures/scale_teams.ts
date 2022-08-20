@@ -1,6 +1,6 @@
-import { IFeedback } from "./feedbacks";
-import { ITeam } from "./teams";
-import { IUser } from "./user";
+import { IFeedback } from "@/structures/feedbacks";
+import { ITeam } from "@/structures/teams";
+import { IUser } from "@/structures/user";
 
 export interface IScaleTeam {
     id: number,

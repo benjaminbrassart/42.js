@@ -1,5 +1,5 @@
-import { ICampus } from "./campus";
-import { ICursus } from "./cursus";
+import { ICampus } from "@/structures/campus";
+import { ICursus } from "@/structures/cursus";
 
 export interface IProject {
     id: number,
